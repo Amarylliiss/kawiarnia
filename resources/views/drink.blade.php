@@ -35,6 +35,9 @@
                                         <li><a href= "{{ url('panel') }}">Panel Admina</a></li>
                                     </ul>
                                         @endif
+                                        @if($errors->any())
+            <b>{!! implode('', $errors->all(':message')) !!}</b>
+            @endif
                                 </nav>
                             </div>
                         </div>
@@ -67,9 +70,8 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="home">Home</a></li>
-                            <li><a href="order">Order</a></li>
-                            <li><a href="cart">Cart</a></li>
+                            <li class="active"><a href="/">Home</a></li>
+                            
                             
                         </ul>
                     </nav>
@@ -77,10 +79,10 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            
+                        <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i><span class="count_cart">{{ count((array) session('cart')) }}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        
                     </div>
                 </div>
             </div>
@@ -128,7 +130,7 @@
                         @foreach ($show as $showData)
                         <div class="featured_item_small">
                         <form id ="GFG" action = "single" method= "GET">
-                            <input type="hidden" value="{{$showData->ID_Produktu}}" name = "ID_Produktu"></input>
+                            <input type="hidden" value="{{$showData->id}}" name = "id"></input>
                             <button style ="background: none; border: none; padding: 0; cursor: pointer">
                             <img src="{{$showData->image}}" style="width:100%;">
                             <p>{{$showData->Nazwa}}<br>
@@ -138,8 +140,9 @@
                         </form>
                     </div>
                         @endforeach
+                        
             </div>
-                
+            {{ $show->links('vendor.pagination.custom') }}
             
         </div>
     </section>

@@ -48,28 +48,29 @@
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
-                        <ul>
-                            <li><a href="/">Back to main page</a></li>
-                            <li><a href="#">Users</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="user-edit">Edit</a></li>
-                                    <li><a href="user-delete">Delete</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Products</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="product-add">Add</a></li>
-                                    <li><a href="product-edit">Edit</a></li>
-                                    <li><a href="product-delete">Delete</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Orders</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="order-edit">Edit</a></li>
-                                    <li><a href="order-delete">Delete</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <ul>
+                                <li><a href="{{url('/')}}">Back to main page</a></li>
+                                <li><a href="#">Users</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a href="{{url('user-add')}}">Add</a></li>
+                                        <li><a href="{{url('user-edit')}}">Edit</a></li>
+                                        <li><a href="{{url('user-delete')}}">Delete</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Products</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a href="{{url('product-add')}}">Add</a></li>
+                                        <li><a href="{{url('product-edit')}}">Edit</a></li>
+                                        <li><a href="{{url('product-delete')}}">Delete</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Orders</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a href="{{url('order-edit')}}">Edit</a></li>
+                                        <li><a href="{{url('order-delete')}}">Delete</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                     </nav>
                 </div>
             </div>
@@ -84,17 +85,21 @@
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="blog__details__text">
                     <div class="checkout__form">
-                    <table border = "1">
+                    <table class="table table-bordered table-striped">
+                     <thead>
                     <tr>
-                        <td>ID</td>
-                        <td>Imię</td>
-                        <td>Nazwisko</td>
-                        <td>Adres</td>
-                        <td>E-mail</td>
-                        <td>Password</td>
-                        <td>Role</td>
-                        <td>Action</td>
+                        <th>ID</th>
+                        <th>Imię</th>
+                        <th>Nazwisko</th>
+                        <th>Adres</th>
+                        <th>E-mail</th>
+                        <th>Password</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                
                     </tr>
+                    </thead>
+                    <tbody>
                     @foreach ($users as $user)
                         <tr>
                         <td>{{ $user->id }}</td>
@@ -104,8 +109,9 @@
                         <td>{{ $user->Email }}</td>
                         <td>{{ $user->password }}</td>
                         <td>{{ $user->role }}</td>
-                        <td><a href = 'delete/{{ $user->id }}'>Delete</a></td>
+                        <td><a href = 'user-delete/{{ $user->id }}'class="btn btn-primary btn-sm">Delete</a></td>
                         </tr>
+                    </tbody>
                     @endforeach
                     </table>
                             @if ($errors->any())

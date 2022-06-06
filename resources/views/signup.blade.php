@@ -19,7 +19,7 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="home">Amaryllis</a></h1>
+						<h1><a href="/">Amaryllis</a></h1>
 						
 					</header>
 
@@ -53,8 +53,18 @@
 									
 									<div class="field">
 										<label for="password">Hasło</label>
-										<input type="text" name="password" id="password" />
+										<input type="password" name="password" id="password" />
 									</div>
+									<div class="field">
+										<label for="password_confirmation">Hasło</label>
+										<input type="password" name="password_confirmation" id="password_confirmation" />
+									</div>
+								
+									@if($errors->any())
+									<b>@foreach($errors->all() as $err) 
+										<li>{{$err}}</li> 
+										@endforeach</b>
+										@endif
 
 								</div>
 								

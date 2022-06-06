@@ -48,25 +48,26 @@
                     </div>
                     <div class="col-lg-6">
                         <nav class="header__menu">
-                            <ul>
-                                <li><a href="/">Back to main page</a></li>
+                        <ul>
+                                <li><a href="{{url('/')}}">Back to main page</a></li>
                                 <li><a href="#">Users</a>
                                     <ul class="header__menu__dropdown">
-                                        <li><a href="./shop-details.html">Edit</a></li>
-                                        <li><a href="./shoping-cart.html">Delete</a></li>
+                                        <li><a href="{{url('user-add')}}">Add</a></li>
+                                        <li><a href="{{url('user-edit')}}">Edit</a></li>
+                                        <li><a href="{{url('user-delete')}}">Delete</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Products</a>
                                     <ul class="header__menu__dropdown">
-                                        <li><a href="./shoping-cart.html">Add</a></li>
-                                        <li><a href="./shop-details.html">Edit</a></li>
-                                        <li><a href="./shoping-cart.html">Delete</a></li>
+                                        <li><a href="{{url('product-add')}}">Add</a></li>
+                                        <li><a href="{{url('product-edit')}}">Edit</a></li>
+                                        <li><a href="{{url('product-delete')}}">Delete</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Orders</a>
                                     <ul class="header__menu__dropdown">
-                                        <li><a href="./shop-details.html">Edit</a></li>
-                                        <li><a href="./shoping-cart.html">Delete</a></li>
+                                        <li><a href="{{url('order-edit')}}">Edit</a></li>
+                                        <li><a href="{{url('order-delete')}}">Delete</a></li>
                                     </ul>
                                 </li>
                             </ul>

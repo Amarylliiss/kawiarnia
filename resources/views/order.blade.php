@@ -24,45 +24,43 @@
 </head>
 
 <body>
-  
 
- 
 
-   
-    <!-- Header Section Begin -->
-    <header class="header">
+
+
+
+     <!-- Header Section Begin -->
+     <header class="header">
         <div class="header__top">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
-                            
+                            <div class="col-lg-6">
+                                <nav class="header__menu">
+                                        @if(Auth::check() && Auth::user()-> role == "1")
+                                    <ul>
+                                        <li><a href= "{{ url('panel') }}">Panel Admina</a></li>
+                                    </ul>
+                                        @endif
+                                        @if($errors->any())
+            <b>{!! implode('', $errors->all(':message')) !!}</b>
+            @endif
+                                </nav>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
-                            
-                            <div class="header__top__right__auth">
-                                
-                                @if( auth()->check() )
-                                <li>
-                                    <a href="#">Hi {{ auth()->user()->imie }}</a>
-                                </li>
-                                <li>
-                                    <a href="/logout">Log Out</a>
-                                </li>
+                        <div class="header__top__right__auth">
+                        @auth
+                                Hi, {{ auth()->user()->Imie }}
+                                <a href= "{{ url('logout') }}">Log Out</a>
                                 @else
-                                <li>
-                                    <a href="login"><i class="fa fa-user"></i> Login</a>
-                                </li>
-                
-                                @endif
+                                <a href= "{{ url('login') }}">Sign In</a>
+                                @endauth
+
+                            
                             </div>
 
                         </div>
@@ -74,15 +72,14 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="/"><img src="img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li class="active"><a href="order">Order</a></li>
-                            <li><a href="cart">Cart</a></li>
+                            <li class="active"><a href="/">Home</a></li>
+                            
                             
                         </ul>
                     </nav>
@@ -90,10 +87,10 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            
+                        <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i><span class="count_cart">{{ count((array) session('cart')) }}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        
                     </div>
                 </div>
             </div>
@@ -102,6 +99,7 @@
             </div>
         </div>
     </header>
+    <!-- Header Section End -->
 
 
 
@@ -113,7 +111,7 @@
                     <div class="breadcrumb__text">
                         <h2>Checkout</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                            <a href="/">Home</a>
                             <span>Checkout</span>
                         </div>
                     </div>
@@ -128,63 +126,88 @@
         <div class="container">
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form action="#">
+                <form action="{{ url('order') }}" method = "POST">
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Imię<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text" value="{{ Auth::user()->Imie}}"name="Imie">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Nazwisko<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text" value="{{ Auth::user()->Nazwisko}}" name="Nazwisko">
                                     </div>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Adres<span>*</span></p>
-                                <input type="text" placeholder="Street Address" class="checkout__input__add">
-                                
+                                <input type="text"  value="{{ Auth::user()->Adres}}" name="Adres" class="checkout__input__add">
+
                             </div>
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Phone<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
+                                
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text"value="{{ Auth::user()->Email}}" name="Email">
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="checkout__input">
-                                <p>Order notes</p>
-                                <input type="text"
-                                    placeholder="Notes about your order, e.g. special notes for delivery.">
-                            </div>
+
+                           
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
                                 <h4>Your Order</h4>
-                                <div class="checkout__order__products">Products <span>Total</span></div>
-                                <ul>
-                                    <li>Vegetable’s Package <span>$75.99</span></li>
-                                    <li>Fresh Vegetable <span>$151.99</span></li>
-                                    <li>Organic Bananas <span>$53.99</span></li>
-                                </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                                <div class="checkout__order__total">Total <span>$750.99</span></div>
-                                <div class="checkout__input__checkbox">
+                                <table id="cart" class="table table-hover table-condensed">
                                     
-                                
+        <thead>
+            <tr>
+                <th style="width:50%">Product</th>
+                <th style="width:10%">Price</th>
+                <th style="width:8%">Quantity</th>
+               
+                
+            </tr>
+        </thead>
+        <tbody>
+            @php $total = 0 @endphp
+            @if(session('cart'))
+            @foreach(session('cart') as $id => $details)
+            @php $total += $details['price'] * $details['quantity'] @endphp
+            <tr data-id="{{ $id }}">
+                <td data-th="Product">
+                    <div class="row">
+                        
+                        <div class="col-sm-9">
+                            {{ $details['name'] }}</h4>
+                        </div>
+                    </div>
+                </td>
+                <td data-th="Price">{{ $details['price'] }}zł</td>
+                <td data-th="Quantity">{{ $details['quantity'] }} </td>
+                   
+               
+               
+                
+            </tr>
+            @endforeach
+            @endif
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" class="text-right">
+                    <strong>Total {{ $total }}zł</strong></h3>
+                </td>
+            </tr>
+
+
+
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
                             </div>
                         </div>
@@ -195,38 +218,7 @@
     </section>
     <!-- Checkout Section End -->
 
-    <!-- Footer Section Begin -->
-    <footer class="footer spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__about__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                        </div>
-                        <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
-                        </ul>
-                    </div>
-                </div>
-                        
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -238,7 +230,7 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
- 
+
 
 </body>
 

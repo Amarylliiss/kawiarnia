@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class ProductEditController extends Controller
 {
@@ -17,6 +17,10 @@ class ProductEditController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
+        if ((Auth::check() && Auth::user()->role == "1") == false) {
+            return redirect()->action([BaseController::class, 'products']);
+        }
+
         return view('product-edit-form', compact('product'));
     }
 
@@ -29,6 +33,6 @@ class ProductEditController extends Controller
         $product->Kategoria = $request->input('Kategoria');
         $product->image = $request->input('image');
         $product->update();
-        return redirect()->back()->with('status','Product Updated Successfully');
+        return redirect()->back()->with('status', 'Product Updated Successfully');
     }
 }

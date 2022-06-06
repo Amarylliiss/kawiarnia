@@ -89,23 +89,27 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nazwa</th>
-                                <th>Cena</th>
-                                <th>Waga</th>
-                                <th>Kategoria</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Address</th>
+                                <th>E-mail</th>
+                                <th>Password</th>
+                                <th>Role</th>
                                 <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($product as $item)
+                            @foreach ($user as $user)
                             <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->Nazwa }}</td>
-                                <td>{{ $item->Cena }}</td>
-                                <td>{{ $item->Waga }}</td>
-                                <td>{{ $item->Kategoria }}</td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->Imie }}</td>
+                                <td>{{ $user->Nazwisko }}</td>
+                                <td>{{ $user->Adres }}</td>
+                                <td>{{ $user->Email }}</td>
+                                <td>{{ $user->password }}</td>
+                                <td>{{ $user->role }}</td>
                                 <td>
-                                    <a href="{{ url('product-edit-form/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ url('user-edit-form/'.$user->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                 </td>
                             </tr>
                             @endforeach

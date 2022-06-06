@@ -143,7 +143,7 @@
 
 
             <div class="widok">
-                @foreach ($show as $showData)
+                @foreach ($searched_items as $showData)
                 <div class="featured_item_small">
                     <form id="GFG" action="single" method="GET">
                         <input type="hidden" value="{{$showData->id}}" name="id"></input>
@@ -158,8 +158,6 @@
                 @endforeach
 
             </div>
-
-            {{ $show->links('vendor.pagination.custom') }}
 
         </div>
 

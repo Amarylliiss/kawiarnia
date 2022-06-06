@@ -89,23 +89,23 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nazwa</th>
-                                <th>Cena</th>
-                                <th>Waga</th>
-                                <th>Kategoria</th>
+                                <th>Order ID</th>
+                                <th>Product ID</th>
+                                <th>Quantity</th>
+                                <th>Amount</th>
                                 <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($product as $item)
+                            @foreach ($order as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->Nazwa }}</td>
-                                <td>{{ $item->Cena }}</td>
-                                <td>{{ $item->Waga }}</td>
-                                <td>{{ $item->Kategoria }}</td>
+                                <td>{{ $item->order_id }}</td>
+                                <td>{{ $item->product_id}}</td>
+                                <td>{{ $item->quantity}}</td>
+                                <td>{{ $item->amount }}</td>
                                 <td>
-                                    <a href="{{ url('product-edit-form/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ url('order-edit-form/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                 </td>
                             </tr>
                             @endforeach

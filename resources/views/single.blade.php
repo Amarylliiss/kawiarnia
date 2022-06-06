@@ -21,6 +21,8 @@
 
 <body>
 
+
+
     <!-- Header Section Begin -->
     <header class="header">
         <div class="header__top">
@@ -93,80 +95,46 @@
     </header>
     <!-- Header Section End -->
 
-    <!-- Hero Section Begin -->
-    <section class="hero">
-        <div class="container">
-
-
-
-            <div class="hero__item set-bg" data-setbg="img/hero/banner1.jpg">
-                <div class="hero__text">
-
-                    <h2>Kawiarnia <br />Amaryllis</h2>
-
-                </div>
-            </div>
-
-        </div>
-        </div>
-    </section>
-    <!-- Hero Section End -->
-
-    <!-- Featured Section Begin -->
-    <section class="featured spad">
+    <!-- Content Section Begin -->
+    <section class="product-details spad">
         <div class="container">
             <div class="row">
-            <div class="blog__sidebar__search">
-                            <form action="search" method="GET" autocomplete="on">
-                                <input type="text" name="query" placeholder="Search...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            @foreach ($products as $product)
+                            <img class="img-single" src="{{$product->image}}" style="width: 40%;">
+
                         </div>
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Menu</h2>
-                    </div>
-                    <div class="featured__controls">
-                        <nav class="header__menu">
-                            <ul>
-                                <li class="active"><a href="/">All</li>
-                                <li><a href="cake">Cakes</li>
-                                <li><a href="drink">Drinks</li>
-                                <li><a href="coffee">Coffee</li>
-                                <li><a href="tea">Tea</li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
-            </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
 
+                        <h2><b> {{$product->Nazwa}} </b></h2>
+                    </div>
+                    <div class="product__details__price">
+                        <h3><b> {{$product->Cena}} zł </b></h3>
+                    </div>
+                    <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
+                            vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
+                            quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
+                    <div class="submit-single">
+                        <a href="{{ route('add.to.cart', $product->id) }}" class="primary-btn">ADD TO CARD</a>
 
-
-            <div class="widok">
-                @foreach ($show as $showData)
-                <div class="featured_item_small">
-                    <form id="GFG" action="single" method="GET">
-                        <input type="hidden" value="{{$showData->id}}" name="id"></input>
-                        <button style="background: none; border: none; padding: 0; cursor: pointer">
-                            <img src="{{$showData->image}}" style="width:100%;">
-                            <p>{{$showData->Nazwa}}<br>
-                                <b>{{$showData->Cena}} zł</b>
-                            </p>
-                        </button>
-                    </form>
+                        @if(session('success'))
+                        {{ session('success') }}
+                        @endif
+                    </div>
+                    @endforeach
                 </div>
-                @endforeach
-
             </div>
-
-            {{ $show->links('vendor.pagination.custom') }}
-
         </div>
-
     </section>
-    <!-- Featured Section End -->
+    <!-- Content Section End -->
 
 
+    </div>
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
@@ -174,7 +142,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="/"><img src="img/logo.png" alt=""></a>
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: 60-49 Road 11378 New York</li>

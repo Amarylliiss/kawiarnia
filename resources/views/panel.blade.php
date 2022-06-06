@@ -48,28 +48,29 @@
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
-                        <ul>
-                            <li><a href="/">Back to main page</a></li>
-                            <li><a href="#">Users</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="user-edit">Edit</a></li>
-                                    <li><a href="user-delete">Delete</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Products</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="product-add">Add</a></li>
-                                    <li><a href="product-edit">Edit</a></li>
-                                    <li><a href="product-delete">Delete</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Orders</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="order-edit">Edit</a></li>
-                                    <li><a href="order-delete">Delete</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <ul>
+                                <li><a href="{{url('/')}}">Back to main page</a></li>
+                                <li><a href="#">Users</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a href="{{url('user-add')}}">Add</a></li>
+                                        <li><a href="{{url('user-edit')}}">Edit</a></li>
+                                        <li><a href="{{url('user-delete')}}">Delete</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Products</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a href="{{url('product-add')}}">Add</a></li>
+                                        <li><a href="{{url('product-edit')}}">Edit</a></li>
+                                        <li><a href="{{url('product-delete')}}">Delete</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Orders</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a href="{{url('order-edit')}}">Edit</a></li>
+                                       
+                                    </ul>
+                                </li>
+                            </ul>
                     </nav>
                 </div>
             </div>
@@ -78,18 +79,12 @@
     <!-- Header Section End -->
 
     <!-- Blog Details Section Begin -->
-    <section class="blog-details spad">
-        <div class="container">
-                <div class="col-lg-8 col-md-7 order-md-1 order-1">
-                    <div class="blog__details__text">
-                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </section>
+
+
+    <img src="img/admin.jpg" >
+    
+  
+
     <!-- Blog Details Section End -->
 
     

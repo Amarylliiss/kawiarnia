@@ -86,44 +86,37 @@
                     <div class="blog__details__text">
                         <div class="checkout__form">
 
-                            <form action="{{ url('product-edit/'.$product->id) }}" method="POST">
+                            <form action="{{ url('order-edit/'.$order->id) }}" method="POST">
                                 @csrf
-                                <h4>Updating Products</h4>
+                                <h4>Updating Order Information</h4>
                                 <div class="row">
                                     <div class="col-lg-8 col-md-6">
                                         <div class="row">
                                             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                                             <div class="col-lg-6">
                                                 <div class="checkout__input">
-                                                    <p>Product name</p>
-                                                    <input type="text" name="Nazwa" value="{{$product->Nazwa}}" class="form-control">
+                                                    <p>Product ID</p>
+                                                    <input type="text" name="product_id" value="{{$order->product_id}}" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="checkout__input">
-                                                    <p>Price</p>
-                                                    <input type="text" name="Cena" value="{{$product->Cena}}" class="form-control">
+                                                    <p>Quantity</p>
+                                                    <input type="text" name="quantity" value="{{$order->quantity}}}" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="checkout__input">
-                                            <p>Weight</p>
-                                            <input type="text" name="Waga" value="{{$product->Waga}}" class="form-control">
+                                            <p>Order ID</p>
+                                            <input type="text" name="order_id" value="{{$order->order_id}}}" class="form-control">
                                         </div>
-                                        <div class="checkout__input">
-                                            <p>Category</p>
-                                            <input type="text" name="Kategoria" value="{{$product->Kategoria}}" class="form-control">
-                                        </div>
-                                        <div class="checkout__input">
-                                            <p>Image</p>
-                                            <input type="text" name="image" value="{{$product->image}}" class="form-control">
-                                        </div>
+                                       
                                         @if ($errors->any())
                                         @foreach ($errors->all() as $error)
                                         <div>{{$error}}</div>
                                         @endforeach
                                         @endif
-                                        <input type='submit' value="Update Product" class="site-btn">
+                                        <input type='submit' value="Update Order" class="site-btn">
                             </form>
                         </div>
                     </div>
